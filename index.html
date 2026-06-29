@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://*.googletagmanager.com https://*.google-analytics.com; connect-src https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://ipapi.co; img-src 'self' https://*.google-analytics.com https://*.googletagmanager.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com;">
+<title>Cannes Lions 2026 — Arquivo de Vencedores</title>
+
+<!-- ============================================================
+     GOOGLE ANALYTICS  —  COLE SEU ID DE MEDIÇÃO ABAIXO
+     Substitua  G-XXXXXXXXXX  (aparece 2 vezes) pelo seu ID real.
+     O GA4 só carrega após consentimento do usuário (LGPD/GDPR).
+     ============================================================ -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  function loadGA(){
+    if(document.getElementById('ga-script'))return;
+    var s=document.createElement('script');
+    s.id='ga-script';s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+  }
+  if(localStorage.getItem('analytics-consent')==='true') loadGA();
+</script>
+<!-- ============ FIM DO GOOGLE ANALYTICS ============ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside id="sidebar">
+    <div class="brand">
+      <div class="kick">Cannes Lions · 2026</div>
+      <a role="button" tabindex="0" id="homeLink" title="Voltar ao início" style="cursor:pointer;display:block;font-size:18px;line-height:1.05;font-weight:700;letter-spacing:.04em;text-transform:uppercase">Arquivo de<br>Vencedores</a>
+      <div class="sub">Grand Prix, Ouro, Prata, Bronze & Titanium</div>
+      <div class="count"><b id="totalCount">—</b> peças premiadas · 33 categorias</div>
+    </div>
+    <h1 class="sr-only">Cannes Lions 2026 — Arquivo de Vencedores</h1>
+    <nav class="nav" id="nav" aria-label="Categorias"></nav>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <main>
+    <div class="topbar">
+      <button class="mobtoggle" id="mobtoggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="search" type="search" placeholder="Buscar peça, marca, agência ou país…" autocomplete="off">
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filtrar por prêmio">
+        <button class="chip on" data-prize="" aria-pressed="true" data-i18n="filterAll">Todos</button>
+        <button class="chip" data-prize="Grand Prix" aria-pressed="false">Grand Prix</button>
+        <button class="chip" data-prize="Ouro" aria-pressed="false">Ouro</button>
+        <button class="chip" data-prize="Prata" aria-pressed="false">Prata</button>
+        <button class="chip" data-prize="Bronze" aria-pressed="false">Bronze</button>
+      </div>
+      <div class="site-controls">
+        <button class="lang-btn" id="langToggle" aria-label="Change language"><span class="flag">🇧🇷</span> PT</button>
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
+          <svg id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="crumb" id="crumb">Todos os grupos</div>
+    <div class="headline"><h2 id="title">Todas as peças</h2><span class="n" id="resultN"></span></div>
+    <div class="lede" id="lede">Navegue pelos grupos ao lado ou busque diretamente. Clique numa peça para assistir.</div>
+    <div class="list" id="list"></div>
+    <div class="empty" id="empty" style="display:none"><b>Nenhuma peça encontrada</b>Ajuste a busca ou os filtros.<button class="clear-btn" id="clearFilters">Limpar filtros</button></div>
+
+    <footer class="site-foot">
+      <p class="disc">Projeto independente, sem fins comerciais. Não é afiliado, endossado ou associado ao Cannes Lions, ao LIONS ou ao Ascential. Todas as marcas, campanhas e vídeos pertencem aos seus respectivos detentores. Dados compilados de fontes públicas para fins informativos e educacionais.</p>
+      <p class="foot-links">
+        <a href="#" id="privacyLink">Privacidade & Cookies</a>
+        <span class="sep">·</span>
+        <span>Cannes Lions 2026 · Arquivo de Vencedores</span>
+      </p>
+    </footer>
+  </main>
+</div>
+
+<div class="pmodal" id="pmodal">
+  <div class="psheet">
+    <button class="pclose" id="pclose" aria-label="Fechar"><span aria-hidden="true">×</span></button>
+    <h3>Privacidade & Cookies</h3>
+    <p>Este site é um projeto independente e gratuito, sem fins comerciais. Não coletamos cadastros, e-mails nem dados pessoais por meio de formulários.</p>
+    <p>Utilizamos o <b>Google Analytics</b> para entender, de forma agregada e anônima, como o site é usado (páginas vistas, origem aproximada do acesso e comportamento de navegação). Para isso, o Google pode armazenar cookies no seu navegador e processar dados como endereço IP — que é anonimizado antes do armazenamento.</p>
+    <p>Esses dados são usados apenas para fins estatísticos e de melhoria do site, não são vendidos nem usados para te identificar individualmente. O tratamento é feito pelo Google conforme a <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidade do Google</a>.</p>
+    <p>Você pode bloquear cookies nas configurações do seu navegador ou usar o <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">complemento de exclusão do Google Analytics</a> a qualquer momento.</p>
+    <p class="pmeta">Conteúdo e marcas pertencem aos seus respectivos detentores. Dados compilados de fontes públicas para fins informativos e educacionais.</p>
+    <button class="pclose-bottom" id="pcloseBottom">Fechar</button>
+  </div>
+</div>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Consentimento de cookies" style="display:none">
+  <p>Usamos cookies de analytics (Google Analytics) para entender como o site é usado. Nenhum dado pessoal é coletado. <a class="privacy-inline" id="cookieLearnMore" href="#">Saiba mais</a></p>
+  <div class="cookie-actions">
+    <button id="cookieAccept" class="chip on">Aceitar</button>
+    <button id="cookieDecline" class="chip">Recusar</button>
+  </div>
+</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
