@@ -175,14 +175,14 @@ main{min-width:0}
   letter-spacing:0;text-transform:none;white-space:nowrap;pointer-events:none;z-index:10}
 @media(max-width:860px){
   .row-head{display:none}
-  .lrow{grid-template-columns:1fr auto;gap:6px 14px;align-items:start;padding:16px}
-  .lrow .c-peca{grid-column:1;grid-row:1}
-  .lrow .c-marca{grid-column:1;grid-row:2;color:var(--ink)}
-  .lrow .c-ag{grid-column:1;grid-row:3}
-  .lrow .c-ag::before{content:attr(data-label) ": ";font-weight:600;color:var(--ink);text-transform:uppercase;font-size:10px;letter-spacing:.08em}
-  .lrow .c-pais{grid-column:1;grid-row:4;margin-top:2px}
+  .lrow{grid-template-columns:1fr auto;gap:4px 12px;align-items:start;padding:12px 16px}
+  .lrow .c-peca{grid-column:1;grid-row:1;font-size:12px}
+  .lrow .c-marca{grid-column:1;grid-row:2;color:var(--ink);font-size:12px}
+  .lrow .c-ag{grid-column:1;grid-row:3;font-size:11px}
+  .lrow .c-ag::before{display:none}
+  .lrow .c-pais{grid-column:1;grid-row:4;margin-top:1px;font-size:11px}
   .lrow .c-prize{grid-column:2;grid-row:1}
-  .lrow .watch{grid-column:2;grid-row:3/5;align-self:end}
+  .lrow .watch{grid-column:2;grid-row:3/5;align-self:end;padding:6px 12px;font-size:9px}
 }
 
 .empty{padding:80px 40px;text-align:center;color:var(--muted)}
@@ -265,9 +265,18 @@ main{min-width:0}
 
 /* ---------- Mobile: show filters ---------- */
 @media(max-width:680px){
-  .topbar{flex-wrap:wrap;height:auto;padding:12px 16px;gap:10px}
+  .topbar{flex-wrap:wrap;height:auto;padding:10px 12px;gap:8px}
+  .search input{padding:9px 14px 9px 36px;font-size:12px}
   .filters{width:100%;order:10;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;
     scrollbar-width:none;padding-bottom:2px}
   .filters::-webkit-scrollbar{display:none}
+  .chip{padding:6px 12px;font-size:9px}
   .site-controls{order:5}
+  .crumb{padding:16px 16px 4px;font-size:11px;letter-spacing:.12em}
+  .headline{padding:0 16px 4px}
+  .headline h2{font-size:20px;letter-spacing:.04em}
+  .headline .n{font-size:12px}
+  .lede{padding:4px 16px 16px;font-size:12px}
+  .sidebar-bio{font-size:9px;padding:14px 20px;line-height:1.5}
+  .bio-links{font-size:8px;gap:8px;margin-top:10px}
 }
