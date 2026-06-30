@@ -84,8 +84,8 @@ function updateStaticTexts(){
   document.getElementById("clearFilters").addEventListener("click",goHome);
   document.querySelector(".sr-only").textContent=t("title");
   document.querySelector(".skip-link").textContent=t("skipLink");
-  const bioPs=document.querySelectorAll("#sidebarBio p");
-  if(bioPs.length>=2){bioPs[0].innerHTML=t("bioP1");bioPs[1].textContent=t("bioP2");}
+  const bioP=document.querySelector("#sidebarBio p");
+  if(bioP) bioP.innerHTML=t("bioText");
   bindCookieLearnMore();
 }
 

@@ -70,8 +70,8 @@ aside{position:sticky;top:0;height:100vh;overflow-y:auto;
   font-family:var(--mono);padding:13px 28px;min-height:44px;display:flex;align-items:center;gap:10px;
   color:var(--ink);border-bottom:1px solid var(--line)}
 .nav-home:hover{background:var(--mist)}
-.nav-home>span:first-child{font-size:13px;font-weight:700;letter-spacing:.01em;
-  text-transform:uppercase;flex:1}
+.nav-home>span:first-child{font-size:12px;font-weight:700;letter-spacing:.01em;
+  text-transform:uppercase;flex:1;white-space:nowrap}
 .nav-home .hc{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
 .nav-home.active{color:var(--ink)}
 .nav-home.active>span:first-child::before{content:"▸ ";font-size:9px}
