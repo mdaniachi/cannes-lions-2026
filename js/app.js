@@ -239,7 +239,8 @@ function render(){
       else if(d.premio==="Bronze") counts[key].bronze++;
       else if(d.premio==="Titanium Lion") counts[key].titan++;
     });
-    const top10=Object.values(counts).sort((a,b)=>b.total-a.total).slice(0,10);
+    const scored=Object.values(counts).map(p=>({...p,score:p.gp*4+p.titan*4+p.ouro*3+p.prata*2+p.bronze}));
+    const top10=scored.sort((a,b)=>b.score-a.score||b.total-a.total).slice(0,10);
     const rows=top10.map((p,i)=>{
       const prizes=[];
       if(p.gp) prizes.push(`${p.gp}× Grand Prix`);
