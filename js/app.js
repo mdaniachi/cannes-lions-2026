@@ -11,9 +11,7 @@ let state={grupo:null,categoria:null,prize:"",q:""};
 
 // --- Theme ---
 function getTheme(){
-  const saved=localStorage.getItem("theme");
-  if(saved) return saved;
-  return window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";
+  return localStorage.getItem("theme")||"light";
 }
 function applyTheme(theme){
   document.documentElement.setAttribute("data-theme",theme);
