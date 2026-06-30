@@ -7,7 +7,7 @@ function hostname(url){try{return new URL(url).hostname.replace(/^www\./,"");}ca
 
 DATA.forEach(d=>{d._search=(d.peca+" "+d.marca+" "+d.agencia+" "+d.pais+" "+d.categoria).toLowerCase();});
 
-let state={grupo:null,categoria:null,prize:"",q:""};
+let state={grupo:null,categoria:null,prize:"",q:"",topPeca:null};
 
 // --- Theme ---
 function getTheme(){
@@ -112,6 +112,20 @@ function rebuildNav(){
         ${cats}</div>`;
     nav.appendChild(wrap);
   }
+
+  // Top 10 Most Awarded
+  const counts={};
+  DATA.forEach(d=>{
+    const key=d.peca+"|||"+d.marca;
+    if(!counts[key]) counts[key]={peca:d.peca,marca:d.marca,total:0};
+    counts[key].total++;
+  });
+  const top10=Object.values(counts).sort((a,b)=>b.total-a.total).slice(0,10);
+  const topWrap=document.createElement("div");topWrap.className="nav-top10";
+  topWrap.innerHTML=`<div class="top10-title">${esc(t("topAwarded"))}</div>`
+    +top10.map((p,i)=>`<a class="top10-item" data-peca="${esc(p.peca)}" data-marca="${esc(p.marca)}"><span class="top10-rank">${i+1}</span><span class="top10-name">${esc(p.peca)}</span><span class="top10-count">${p.total}</span></a>`).join("");
+  nav.appendChild(topWrap);
+
   document.querySelector(".brand .count").innerHTML=`<b>${DATA.length}</b>${t("countSuffix")}`;
   updateNavActiveIndicators();
 }
@@ -127,15 +141,32 @@ function updateNavActiveIndicators(){
 document.getElementById("nav").addEventListener("click",e=>{
   const gb=e.target.closest(".nav-group>button");
   const ca=e.target.closest(".nav-cats a");
+  const tp=e.target.closest(".top10-item");
   if(gb){
     const isOpen=gb.parentElement.classList.toggle("open");
     gb.setAttribute("aria-expanded",isOpen);
   }
   if(ca){
     document.querySelectorAll(".nav-cats a").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll(".top10-item").forEach(x=>x.classList.remove("active"));
     ca.classList.add("active");
     state.grupo=ca.dataset.g;
     state.categoria=ca.dataset.c||null;
+    state.topPeca=null;
+    updateNavActiveIndicators();
+    render();closeMob();
+    scrollToContent();
+  }
+  if(tp){
+    document.querySelectorAll(".nav-cats a").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll(".top10-item").forEach(x=>x.classList.remove("active"));
+    tp.classList.add("active");
+    state.grupo=null;state.categoria=null;state.q="";state.prize="";
+    state.topPeca={peca:tp.dataset.peca,marca:tp.dataset.marca};
+    document.getElementById("search").value="";
+    document.querySelectorAll(".chip").forEach(x=>{x.classList.remove("on");x.setAttribute("aria-pressed","false");});
+    document.querySelector('.chip[data-prize=""]').classList.add("on");
+    document.querySelector('.chip[data-prize=""]').setAttribute("aria-pressed","true");
     updateNavActiveIndicators();
     render();closeMob();
     scrollToContent();
@@ -159,9 +190,10 @@ function scrollToContent(){
 
 // Home / Clear filters
 function goHome(){
-  state={grupo:null,categoria:null,prize:"",q:""};
+  state={grupo:null,categoria:null,prize:"",q:"",topPeca:null};
   document.getElementById("search").value="";
   document.querySelectorAll(".chip").forEach(x=>{x.classList.remove("on");x.setAttribute("aria-pressed","false");});
+  document.querySelectorAll(".top10-item").forEach(x=>x.classList.remove("active"));
   document.querySelector('.chip[data-prize=""]').classList.add("on");
   document.querySelector('.chip[data-prize=""]').setAttribute("aria-pressed","true");
   document.querySelectorAll(".nav-cats a").forEach(x=>x.classList.remove("active"));
@@ -189,6 +221,7 @@ const elEmpty=document.getElementById("empty");
 function render(){
   const elNavHome=document.getElementById("navHome");
   let list=DATA.filter(d=>{
+    if(state.topPeca){return d.peca===state.topPeca.peca&&d.marca===state.topPeca.marca;}
     if(state.grupo&&d.grupo!==state.grupo)return false;
     if(state.categoria&&d.categoria!==state.categoria)return false;
     if(state.prize&&d.premio!==state.prize)return false;
@@ -197,7 +230,8 @@ function render(){
   });
   list.sort((a,b)=>(PRIZE_ORDER[a.premio]-PRIZE_ORDER[b.premio])||a.peca.localeCompare(b.peca));
 
-  if(state.categoria){elCrumb.innerHTML=`${esc(state.grupo)} / <b>${esc(state.categoria)}</b>`;elTitle.textContent=state.categoria;}
+  if(state.topPeca){elCrumb.innerHTML=`${esc(t("topAwarded"))} / <b>${esc(state.topPeca.marca)}</b>`;elTitle.textContent=state.topPeca.peca;}
+  else if(state.categoria){elCrumb.innerHTML=`${esc(state.grupo)} / <b>${esc(state.categoria)}</b>`;elTitle.textContent=state.categoria;}
   else if(state.grupo){elCrumb.innerHTML=`<b>${esc(state.grupo)}</b>`;elTitle.textContent=state.grupo;}
   else if(state.q){elCrumb.textContent=t("search");elTitle.textContent=`${t("searchFor")} "${state.q}"`;}
   else if(state.prize){elCrumb.innerHTML=`${esc(t("byTrophy"))} / <b>${esc(state.prize)}</b>`;elTitle.textContent=`${t("allOfPrize")} ${state.prize}`;}
