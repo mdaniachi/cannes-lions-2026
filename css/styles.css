@@ -62,7 +62,7 @@ aside{position:sticky;top:0;height:100vh;overflow-y:auto;
 .brand h1{font-size:18px;line-height:1.05;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .brand h1:hover{opacity:.6}
 .brand .sub{font-size:10px;color:var(--muted);margin-top:6px;letter-spacing:.01em}
-.brand .count{font-size:10px;color:var(--muted);margin-top:4px;font-weight:600}
+.brand .count{font-size:10px;color:var(--muted);margin-top:10px;font-weight:600}
 .brand .count b{color:var(--ink);font-weight:700}
 
 .nav{padding:8px 0}
@@ -136,7 +136,7 @@ main{min-width:0}
 .headline{padding:0 40px 4px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 .headline h2{font-size:26px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono)}
 .headline .n{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
-.lede{padding:6px 40px 26px;color:var(--muted);font-size:13px;max-width:680px}
+.lede{display:none}
 
 /* ---------- List ---------- */
 .list{padding:0 40px 80px;display:flex;flex-direction:column;animation:fadeIn .25s ease-out}

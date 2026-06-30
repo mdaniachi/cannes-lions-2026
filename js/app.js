@@ -62,7 +62,6 @@ function updateStaticTexts(){
   document.querySelector(".brand .kick").textContent=t("kick");
   document.getElementById("homeLink").innerHTML=t("heading");
   document.getElementById("homeLink").title=t("headingTitle");
-  document.querySelector(".brand .sub").textContent=t("sub");
   document.getElementById("search").placeholder=t("searchPlaceholder");
   document.querySelector('.chip[data-prize=""]').textContent=t("filterAll");
   document.querySelector(".site-foot .disc").textContent=t("disclaimer");
