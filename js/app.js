@@ -218,7 +218,7 @@ function render(){
   const extSvg=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>`;
   const agLabel=t("agency");
   const head=`<div class="row-head" role="row">
-    <span role="columnheader">${esc(t("piece"))}</span><span role="columnheader">${esc(t("brand"))}</span><span role="columnheader">${esc(agLabel)}</span><span role="columnheader">${esc(t("country"))}</span><span role="columnheader">${esc(t("prize"))}</span><span role="columnheader"></span></div>`;
+    <span role="columnheader">${esc(t("piece"))}</span><span role="columnheader">${esc(t("brand"))}</span><span role="columnheader">${esc(agLabel)}</span><span role="columnheader">${esc(t("country"))}</span><span role="columnheader">${esc(t("category"))}</span><span role="columnheader">${esc(t("prize"))}</span><span role="columnheader"></span></div>`;
 
   elList.style.animation="none";
   elList.offsetHeight;
@@ -238,6 +238,7 @@ function render(){
       <div class="c-marca" role="cell">${esc(d.marca)}</div>
       <div class="c-ag" role="cell" data-label="${esc(agLabel)}">${esc(d.agencia)}</div>
       <div class="c-pais" role="cell">${flagHtml} <span>${esc(d.pais)}</span></div>
+      <div class="c-cat" role="cell">${esc(d.categoria)}</div>
       <div class="c-prize" role="cell"><span class="pz" data-p="${esc(d.premio)}">${esc(d.premio)}</span></div>
       <button class="${cls}" data-i="${idx}"${tip}>${esc(label)} ${extSvg}</button></div>`;
   }).join("");

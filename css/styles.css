@@ -142,11 +142,11 @@ main{min-width:0}
 .list{padding:0 40px 80px;display:flex;flex-direction:column;animation:fadeIn .25s ease-out}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @media(max-width:560px){.list{padding:0 16px 60px}}
-.row-head{display:grid;grid-template-columns:minmax(0,2.4fr) minmax(0,1.4fr) minmax(0,1.7fr) 130px 120px 110px;
+.row-head{display:grid;grid-template-columns:minmax(0,2.4fr) minmax(0,1.4fr) minmax(0,1.7fr) 130px minmax(0,1.2fr) 120px 110px;
   gap:18px;padding:11px 16px;border-bottom:1px solid var(--ink);
   font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:700;
   position:sticky;top:var(--topbar-h);background:var(--paper);z-index:5}
-.lrow{display:grid;grid-template-columns:minmax(0,2.4fr) minmax(0,1.4fr) minmax(0,1.7fr) 130px 120px 110px;
+.lrow{display:grid;grid-template-columns:minmax(0,2.4fr) minmax(0,1.4fr) minmax(0,1.7fr) 130px minmax(0,1.2fr) 120px 110px;
   gap:18px;padding:15px 16px;border-bottom:1px solid var(--line);align-items:center;
   transition:background .12s}
 .lrow:hover{background:var(--mist)}
@@ -154,6 +154,7 @@ main{min-width:0}
 .lrow .c-marca{font-size:13px;font-weight:600;min-width:0}
 .lrow .c-ag{font-size:12px;color:var(--muted);min-width:0;line-height:1.35}
 .lrow .c-pais{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.lrow .c-cat{font-size:11px;color:var(--muted);min-width:0}
 .lrow .c-pais .flag-emoji{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
 .lrow .c-prize{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
 .lrow .pz{display:inline-block;padding:4px 10px;border-radius:2px;font-family:var(--mono)}
@@ -181,6 +182,7 @@ main{min-width:0}
   .lrow .c-ag{grid-column:1;grid-row:3;font-size:11px}
   .lrow .c-ag::before{display:none}
   .lrow .c-pais{grid-column:1;grid-row:4;margin-top:1px;font-size:11px}
+  .lrow .c-cat{grid-column:1;grid-row:5;font-size:10px;margin-top:2px;color:var(--muted)}
   .lrow .c-prize{grid-column:2;grid-row:1}
   .lrow .watch{grid-column:2;grid-row:3/5;align-self:end;padding:6px 12px;font-size:9px}
 }
