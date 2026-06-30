@@ -75,9 +75,6 @@ function updateStaticTexts(){
   ps[3].innerHTML=t("privacyP4");
   ps[4].textContent=t("privacyMeta");
   document.getElementById("pcloseBottom").textContent=t("closeBtn");
-  document.querySelector("#cookieBanner p").innerHTML=esc(t("cookieMsg"))+' <a class="privacy-inline" id="cookieLearnMore" href="#">'+esc(t("cookieLearnMore"))+'</a>';
-  document.getElementById("cookieAccept").textContent=t("cookieAccept");
-  document.getElementById("cookieDecline").textContent=t("cookieDecline");
   const emptyEl=document.getElementById("empty");
   emptyEl.innerHTML="<b>"+esc(t("emptyTitle"))+"</b>"+esc(t("emptyDesc"))+'<button class="clear-btn" id="clearFilters">'+esc(t("clearFilters"))+"</button>";
   document.getElementById("clearFilters").addEventListener("click",goHome);
@@ -85,7 +82,6 @@ function updateStaticTexts(){
   document.querySelector(".skip-link").textContent=t("skipLink");
   const bioP=document.querySelector("#sidebarBio p");
   if(bioP) bioP.innerHTML=t("bioText");
-  bindCookieLearnMore();
 }
 
 // --- Build nav ---
@@ -299,27 +295,6 @@ document.getElementById("pclose").addEventListener("click",closePrivacy);
 document.getElementById("pcloseBottom").addEventListener("click",closePrivacy);
 pmodal.addEventListener("click",e=>{if(e.target===pmodal)closePrivacy();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&pmodal.classList.contains("open"))closePrivacy();});
-
-function bindCookieLearnMore(){
-  const el=document.getElementById("cookieLearnMore");
-  if(el) el.addEventListener("click",e=>{e.preventDefault();openPrivacy();});
-}
-bindCookieLearnMore();
-
-// Cookie consent banner
-const cookieBanner=document.getElementById("cookieBanner");
-if(!localStorage.getItem('analytics-consent')){
-  cookieBanner.style.display="flex";
-}
-document.getElementById("cookieAccept").addEventListener("click",()=>{
-  localStorage.setItem('analytics-consent','true');
-  cookieBanner.style.display="none";
-  loadGA();
-});
-document.getElementById("cookieDecline").addEventListener("click",()=>{
-  localStorage.setItem('analytics-consent','false');
-  cookieBanner.style.display="none";
-});
 
 // --- Init ---
 function buildUI(){
