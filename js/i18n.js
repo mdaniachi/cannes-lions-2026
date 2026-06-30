@@ -1,9 +1,9 @@
 const I18N = {
   pt: {
     lang: "pt-BR",
-    title: "Cannes Lions 2026 — Arquivo de Vencedores",
+    title: "Cannes Lions 2026 — Winners Archive",
     kick: "Cannes Lions · 2026",
-    heading: "Arquivo de<br>Vencedores",
+    heading: "Winners<br>Archive",
     headingTitle: "Voltar ao início",
     sub: "Grand Prix, Ouro, Prata, Bronze & Titanium",
     countSuffix: " peças premiadas · 33 categorias",
@@ -32,7 +32,7 @@ const I18N = {
     lede: "Navegue pelos grupos ao lado ou busque diretamente. Clique numa peça para assistir.",
     disclaimer: "Projeto independente, sem fins comerciais. Não é afiliado, endossado ou associado ao Cannes Lions, ao LIONS ou ao Ascential. Todas as marcas, campanhas e vídeos pertencem aos seus respectivos detentores. Dados compilados de fontes públicas para fins informativos e educacionais.",
     privacyLink: "Privacidade & Cookies",
-    footLabel: "Cannes Lions 2026 · Arquivo de Vencedores",
+    footLabel: "Cannes Lions 2026 · Winners Archive",
     privacyTitle: "Privacidade & Cookies",
     privacyP1: "Este site é um projeto independente e gratuito, sem fins comerciais. Não coletamos cadastros, e-mails nem dados pessoais por meio de formulários.",
     privacyP2: 'Utilizamos o <b>Google Analytics</b> para entender, de forma agregada e anônima, como o site é usado (páginas vistas, origem aproximada do acesso e comportamento de navegação). Para isso, o Google pode armazenar cookies no seu navegador e processar dados como endereço IP — que é anonimizado antes do armazenamento.',
