@@ -100,14 +100,21 @@ aside{position:sticky;top:0;height:100vh;overflow-y:auto;
 .nav-cats a .c{color:var(--muted);font-variant-numeric:tabular-nums}
 
 /* ---------- Sidebar bio ---------- */
-.nav-top10{border-top:1px solid var(--line);padding:14px 0 8px}
-.top10-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);padding:0 28px 8px}
-.top10-item{display:flex;align-items:center;gap:8px;padding:5px 28px;font-size:11px;color:var(--muted);cursor:pointer;transition:background .12s}
-.top10-item:hover{background:var(--mist);color:var(--ink)}
-.top10-item.active{color:var(--ink);font-weight:600}
-.top10-rank{font-size:9px;font-weight:700;color:var(--muted);min-width:14px;font-variant-numeric:tabular-nums}
-.top10-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.top10-count{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums}
+.nav-top{display:flex;justify-content:space-between;align-items:center;width:100%;padding:12px 28px;
+  border-top:1px solid var(--line);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);cursor:pointer;transition:background .12s;margin-top:4px}
+.nav-top:hover{background:var(--mist);color:var(--ink)}
+.nav-top.active{color:var(--ink)}
+.nav-top .hc{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums}
+.top10-row{display:grid;grid-template-columns:32px 1fr 40px;gap:12px;padding:16px 16px;
+  border-bottom:1px solid var(--line);align-items:center;cursor:pointer;transition:background .12s}
+.top10-row:hover{background:var(--mist)}
+.top10-pos{font-size:18px;font-weight:700;color:var(--muted);text-align:center;font-variant-numeric:tabular-nums}
+.top10-info{display:flex;flex-direction:column;gap:2px;min-width:0}
+.top10-piece{font-size:14px;font-weight:700;letter-spacing:-.01em}
+.top10-brand{font-size:13px;font-weight:600}
+.top10-prizes{font-size:11px;color:var(--muted)}
+.top10-total{font-size:16px;font-weight:700;text-align:center;color:var(--muted)}
 .sidebar-bio{padding:18px 28px;border-top:1px solid var(--line);margin-top:auto;
   font-size:10px;line-height:1.55;color:var(--muted);opacity:.85}
 .sidebar-bio p{margin-bottom:0}

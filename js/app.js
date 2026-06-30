@@ -7,7 +7,7 @@ function hostname(url){try{return new URL(url).hostname.replace(/^www\./,"");}ca
 
 DATA.forEach(d=>{d._search=(d.peca+" "+d.marca+" "+d.agencia+" "+d.pais+" "+d.categoria).toLowerCase();});
 
-let state={grupo:null,categoria:null,prize:"",q:"",topPeca:null};
+let state={grupo:null,categoria:null,prize:"",q:"",topPeca:null,topView:false};
 
 // --- Theme ---
 function getTheme(){
@@ -113,18 +113,12 @@ function rebuildNav(){
     nav.appendChild(wrap);
   }
 
-  // Top 10 Most Awarded
-  const counts={};
-  DATA.forEach(d=>{
-    const key=d.peca+"|||"+d.marca;
-    if(!counts[key]) counts[key]={peca:d.peca,marca:d.marca,total:0};
-    counts[key].total++;
-  });
-  const top10=Object.values(counts).sort((a,b)=>b.total-a.total).slice(0,10);
-  const topWrap=document.createElement("div");topWrap.className="nav-top10";
-  topWrap.innerHTML=`<div class="top10-title">${esc(t("topAwarded"))}</div>`
-    +top10.map((p,i)=>`<a class="top10-item" data-peca="${esc(p.peca)}" data-marca="${esc(p.marca)}"><span class="top10-rank">${i+1}</span><span class="top10-name">${esc(p.peca)}</span><span class="top10-count">${p.total}</span></a>`).join("");
-  nav.appendChild(topWrap);
+  // Most Awarded nav item
+  const topBtn=document.createElement("button");
+  topBtn.className="nav-top";
+  topBtn.id="navTop";
+  topBtn.innerHTML=`<span>${esc(t("topAwarded"))}</span><span class="hc">10</span>`;
+  nav.appendChild(topBtn);
 
   document.querySelector(".brand .count").innerHTML=`<b>${DATA.length}</b>${t("countSuffix")}`;
   updateNavActiveIndicators();
@@ -141,28 +135,24 @@ function updateNavActiveIndicators(){
 document.getElementById("nav").addEventListener("click",e=>{
   const gb=e.target.closest(".nav-group>button");
   const ca=e.target.closest(".nav-cats a");
-  const tp=e.target.closest(".top10-item");
+  const topNav=e.target.closest("#navTop");
   if(gb){
     const isOpen=gb.parentElement.classList.toggle("open");
     gb.setAttribute("aria-expanded",isOpen);
   }
   if(ca){
     document.querySelectorAll(".nav-cats a").forEach(x=>x.classList.remove("active"));
-    document.querySelectorAll(".top10-item").forEach(x=>x.classList.remove("active"));
     ca.classList.add("active");
     state.grupo=ca.dataset.g;
     state.categoria=ca.dataset.c||null;
-    state.topPeca=null;
+    state.topPeca=null;state.topView=false;
     updateNavActiveIndicators();
     render();closeMob();
     scrollToContent();
   }
-  if(tp){
+  if(topNav){
     document.querySelectorAll(".nav-cats a").forEach(x=>x.classList.remove("active"));
-    document.querySelectorAll(".top10-item").forEach(x=>x.classList.remove("active"));
-    tp.classList.add("active");
-    state.grupo=null;state.categoria=null;state.q="";state.prize="";
-    state.topPeca={peca:tp.dataset.peca,marca:tp.dataset.marca};
+    state={grupo:null,categoria:null,prize:"",q:"",topPeca:null,topView:true};
     document.getElementById("search").value="";
     document.querySelectorAll(".chip").forEach(x=>{x.classList.remove("on");x.setAttribute("aria-pressed","false");});
     document.querySelector('.chip[data-prize=""]').classList.add("on");
@@ -190,10 +180,9 @@ function scrollToContent(){
 
 // Home / Clear filters
 function goHome(){
-  state={grupo:null,categoria:null,prize:"",q:"",topPeca:null};
+  state={grupo:null,categoria:null,prize:"",q:"",topPeca:null,topView:false};
   document.getElementById("search").value="";
   document.querySelectorAll(".chip").forEach(x=>{x.classList.remove("on");x.setAttribute("aria-pressed","false");});
-  document.querySelectorAll(".top10-item").forEach(x=>x.classList.remove("active"));
   document.querySelector('.chip[data-prize=""]').classList.add("on");
   document.querySelector('.chip[data-prize=""]').setAttribute("aria-pressed","true");
   document.querySelectorAll(".nav-cats a").forEach(x=>x.classList.remove("active"));
@@ -220,6 +209,48 @@ const elEmpty=document.getElementById("empty");
 
 function render(){
   const elNavHome=document.getElementById("navHome");
+  const elNavTop=document.getElementById("navTop");
+
+  // Top 10 view
+  if(state.topView){
+    if(elNavHome) elNavHome.classList.remove("active");
+    if(elNavTop) elNavTop.classList.add("active");
+    elCrumb.textContent=t("topAwarded");
+    elTitle.textContent=t("topAwarded");
+    elResultN.textContent="10";
+    elLede.textContent="";
+    elEmpty.style.display="none";
+    const counts={};
+    DATA.forEach(d=>{
+      const key=d.peca+"|||"+d.marca;
+      if(!counts[key]) counts[key]={peca:d.peca,marca:d.marca,total:0,gp:0,ouro:0,prata:0,bronze:0,titan:0};
+      counts[key].total++;
+      if(d.premio==="Grand Prix") counts[key].gp++;
+      else if(d.premio==="Ouro") counts[key].ouro++;
+      else if(d.premio==="Prata") counts[key].prata++;
+      else if(d.premio==="Bronze") counts[key].bronze++;
+      else if(d.premio==="Titanium Lion") counts[key].titan++;
+    });
+    const top10=Object.values(counts).sort((a,b)=>b.total-a.total).slice(0,10);
+    const rows=top10.map((p,i)=>{
+      const prizes=[];
+      if(p.gp) prizes.push(`${p.gp}× Grand Prix`);
+      if(p.titan) prizes.push(`${p.titan}× Titanium`);
+      if(p.ouro) prizes.push(`${p.ouro}× ${currentLang==="pt"?"Ouro":"Gold"}`);
+      if(p.prata) prizes.push(`${p.prata}× ${currentLang==="pt"?"Prata":"Silver"}`);
+      if(p.bronze) prizes.push(`${p.bronze}× Bronze`);
+      return `<div class="top10-row" data-peca="${esc(p.peca)}" data-marca="${esc(p.marca)}">
+        <span class="top10-pos">${i+1}</span>
+        <div class="top10-info"><span class="top10-piece">${esc(p.peca)}</span><span class="top10-brand">${esc(p.marca)}</span><span class="top10-prizes">${prizes.join(" · ")}</span></div>
+        <span class="top10-total">${p.total}</span></div>`;
+    }).join("");
+    elList.innerHTML=rows;
+    elList.style.animation="none";elList.offsetHeight;elList.style.animation="";
+    return;
+  }
+
+  if(elNavTop) elNavTop.classList.remove("active");
+
   let list=DATA.filter(d=>{
     if(state.topPeca){return d.peca===state.topPeca.peca&&d.marca===state.topPeca.marca;}
     if(state.grupo&&d.grupo!==state.grupo)return false;
@@ -278,8 +309,14 @@ function render(){
   }).join("");
 }
 
-// Watch button -> open link
+// Watch button -> open link / Top10 row -> drill in
 document.getElementById("list").addEventListener("click",e=>{
+  const topRow=e.target.closest(".top10-row");
+  if(topRow){
+    state.topView=false;
+    state.topPeca={peca:topRow.dataset.peca,marca:topRow.dataset.marca};
+    render();scrollToContent();return;
+  }
   const btn=e.target.closest(".watch");if(!btn)return;
   const d=DATA[+btn.dataset.i];
   if(d.link&&isSafeUrl(d.link)) window.open(d.link,"_blank","noopener");
