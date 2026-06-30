@@ -45,7 +45,8 @@ const I18N = {
     clearFilters: "Limpar filtros",
     closeBtn: "Fechar",
     darkMode: "Escuro",
-    lightMode: "Claro"
+    lightMode: "Claro",
+    skipLink: "Pular para o conteúdo"
   },
   en: {
     lang: "en",
@@ -93,7 +94,8 @@ const I18N = {
     clearFilters: "Clear filters",
     closeBtn: "Close",
     darkMode: "Dark",
-    lightMode: "Light"
+    lightMode: "Light",
+    skipLink: "Skip to content"
   }
 };
 

@@ -30,15 +30,19 @@ document.getElementById("themeToggle").addEventListener("click",()=>{
 function initLang(){
   const saved=localStorage.getItem("lang");
   if(saved&&I18N[saved]){applyLang(saved);buildUI();return;}
+  buildUI();
   fetch("https://ipapi.co/json/",{signal:AbortSignal.timeout(3000)})
     .then(r=>r.json())
     .then(d=>{
       const cc=(d.country_code||"").toUpperCase();
       const ptCountries=["BR","PT","AO","MZ","CV","GW","TL","ST"];
       const lang=ptCountries.includes(cc)?"pt":"en";
-      applyLang(lang);buildUI();
+      if(lang!==currentLang){applyLang(lang);buildUI();}
     })
-    .catch(()=>{applyLang(detectLang());buildUI();});
+    .catch(()=>{
+      const lang=detectLang();
+      if(lang!==currentLang){applyLang(lang);buildUI();}
+    });
 }
 
 function updateLangBtn(){
@@ -50,10 +54,7 @@ function updateLangBtn(){
 document.getElementById("langToggle").addEventListener("click",()=>{
   const next=currentLang==="pt"?"en":"pt";
   applyLang(next);
-  updateLangBtn();
-  rebuildNav();
-  updateStaticTexts();
-  render();
+  buildUI();
 });
 
 // --- Static text updates ---
@@ -82,6 +83,7 @@ function updateStaticTexts(){
   emptyEl.innerHTML="<b>"+esc(t("emptyTitle"))+"</b>"+esc(t("emptyDesc"))+'<button class="clear-btn" id="clearFilters">'+esc(t("clearFilters"))+"</button>";
   document.getElementById("clearFilters").addEventListener("click",goHome);
   document.querySelector(".sr-only").textContent=t("title");
+  document.querySelector(".skip-link").textContent=t("skipLink");
   bindCookieLearnMore();
 }
 
@@ -106,7 +108,7 @@ function rebuildNav(){
     const wrap=document.createElement("div");wrap.className="nav-group";
     const cats=Object.entries(groups[g]).map(([c,n])=>
       `<a data-g="${esc(g)}" data-c="${esc(c)}"><span>${esc(c)}</span><span class="c">${n}</span></a>`).join("");
-    wrap.innerHTML=`<button data-g="${esc(g)}"><span class="gnum">${String(gi).padStart(2,"0")}</span>
+    wrap.innerHTML=`<button data-g="${esc(g)}" aria-expanded="false"><span class="gnum">${String(gi).padStart(2,"0")}</span>
       <span class="gname">${esc(g)}</span><span class="gcount">${tot}</span></button>
       <div class="nav-cats">
         <a class="all" data-g="${esc(g)}" data-c=""><span>${esc(t("allOf"))} ${esc(g)}</span><span class="c">${tot}</span></a>
@@ -128,7 +130,10 @@ function updateNavActiveIndicators(){
 document.getElementById("nav").addEventListener("click",e=>{
   const gb=e.target.closest(".nav-group>button");
   const ca=e.target.closest(".nav-cats a");
-  if(gb) gb.parentElement.classList.toggle("open");
+  if(gb){
+    const isOpen=gb.parentElement.classList.toggle("open");
+    gb.setAttribute("aria-expanded",isOpen);
+  }
   if(ca){
     document.querySelectorAll(".nav-cats a").forEach(x=>x.classList.remove("active"));
     ca.classList.add("active");
@@ -136,6 +141,7 @@ document.getElementById("nav").addEventListener("click",e=>{
     state.categoria=ca.dataset.c||null;
     updateNavActiveIndicators();
     render();closeMob();
+    scrollToContent();
   }
 });
 
@@ -146,7 +152,13 @@ document.getElementById("filters").addEventListener("click",e=>{
   c.classList.add("on");c.setAttribute("aria-pressed","true");
   state.prize=c.dataset.prize;
   render();
+  scrollToContent();
 });
+
+function scrollToContent(){
+  const el=document.getElementById("crumb");
+  if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+}
 
 // Home / Clear filters
 function goHome(){
@@ -160,7 +172,6 @@ function goHome(){
   render();window.scrollTo({top:0,behavior:"smooth"});closeMob();
 }
 document.getElementById("homeLink").addEventListener("click",goHome);
-document.getElementById("clearFilters").addEventListener("click",goHome);
 
 // Search
 let searchTimer;
@@ -209,8 +220,13 @@ function render(){
 
   const extSvg=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>`;
   const agLabel=t("agency");
-  const head=`<div class="row-head">
-    <span>${esc(t("piece"))}</span><span>${esc(t("brand"))}</span><span>${esc(agLabel)}</span><span>${esc(t("country"))}</span><span>${esc(t("prize"))}</span><span></span></div>`;
+  const head=`<div class="row-head" role="row">
+    <span role="columnheader">${esc(t("piece"))}</span><span role="columnheader">${esc(t("brand"))}</span><span role="columnheader">${esc(agLabel)}</span><span role="columnheader">${esc(t("country"))}</span><span role="columnheader">${esc(t("prize"))}</span><span role="columnheader"></span></div>`;
+
+  elList.style.animation="none";
+  elList.offsetHeight;
+  elList.style.animation="";
+
   elList.innerHTML=head+list.map(d=>{
     const idx=dataIndex.get(d);
     const isExt=d.embed==="external";
@@ -221,11 +237,11 @@ function render(){
     const flagEmoji=FLAG[d.pais]||"";
     const flagHtml=flagEmoji?`<span class="flag-emoji">${flagEmoji}</span>`:"";
     return `<div class="lrow" role="row">
-      <div class="c-peca">${esc(d.peca)}</div>
-      <div class="c-marca">${esc(d.marca)}</div>
-      <div class="c-ag" data-label="${esc(agLabel)}">${esc(d.agencia)}</div>
-      <div class="c-pais">${flagHtml} <span>${esc(d.pais)}</span></div>
-      <div class="c-prize"><span class="pz" data-p="${esc(d.premio)}">${esc(d.premio)}</span></div>
+      <div class="c-peca" role="cell">${esc(d.peca)}</div>
+      <div class="c-marca" role="cell">${esc(d.marca)}</div>
+      <div class="c-ag" role="cell" data-label="${esc(agLabel)}">${esc(d.agencia)}</div>
+      <div class="c-pais" role="cell">${flagHtml} <span>${esc(d.pais)}</span></div>
+      <div class="c-prize" role="cell"><span class="pz" data-p="${esc(d.premio)}">${esc(d.premio)}</span></div>
       <button class="${cls}" data-i="${idx}"${tip}>${esc(label)} ${extSvg}</button></div>`;
   }).join("");
 }
@@ -239,19 +255,49 @@ document.getElementById("list").addEventListener("click",e=>{
 
 // Mobile nav
 const sidebar=document.getElementById("sidebar"),scrim=document.getElementById("scrim");
-document.getElementById("mobtoggle").onclick=()=>{sidebar.classList.add("show");scrim.classList.add("show");};
-function closeMob(){sidebar.classList.remove("show");scrim.classList.remove("show");}
+const mobToggleBtn=document.getElementById("mobtoggle");
+mobToggleBtn.addEventListener("click",()=>{
+  sidebar.classList.add("show");scrim.classList.add("show");
+  mobToggleBtn.setAttribute("aria-expanded","true");
+});
+function closeMob(){
+  sidebar.classList.remove("show");scrim.classList.remove("show");
+  mobToggleBtn.setAttribute("aria-expanded","false");
+  mobToggleBtn.focus();
+}
 scrim.onclick=closeMob;
 
-// Privacy modal
+// Privacy modal with focus trap
 const pmodal=document.getElementById("pmodal");
-function openPrivacy(){pmodal.classList.add("open");document.body.style.overflow="hidden";}
-function closePrivacy(){pmodal.classList.remove("open");document.body.style.overflow="";}
+let lastFocusedElement;
+function openPrivacy(){
+  lastFocusedElement=document.activeElement;
+  pmodal.classList.add("open");
+  document.body.style.overflow="hidden";
+  const firstFocusable=pmodal.querySelector("button");
+  if(firstFocusable) firstFocusable.focus();
+}
+function closePrivacy(){
+  pmodal.classList.remove("open");
+  document.body.style.overflow="";
+  if(lastFocusedElement) lastFocusedElement.focus();
+}
+pmodal.addEventListener("keydown",e=>{
+  if(e.key!=="Tab") return;
+  const focusable=pmodal.querySelectorAll('button,a[href],[tabindex]:not([tabindex="-1"])');
+  if(!focusable.length) return;
+  const first=focusable[0],last=focusable[focusable.length-1];
+  if(e.shiftKey){
+    if(document.activeElement===first){e.preventDefault();last.focus();}
+  }else{
+    if(document.activeElement===last){e.preventDefault();first.focus();}
+  }
+});
 document.getElementById("privacyLink").addEventListener("click",e=>{e.preventDefault();openPrivacy();});
 document.getElementById("pclose").addEventListener("click",closePrivacy);
 document.getElementById("pcloseBottom").addEventListener("click",closePrivacy);
 pmodal.addEventListener("click",e=>{if(e.target===pmodal)closePrivacy();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closePrivacy();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&pmodal.classList.contains("open"))closePrivacy();});
 
 function bindCookieLearnMore(){
   const el=document.getElementById("cookieLearnMore");
