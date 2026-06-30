@@ -231,7 +231,7 @@ function render(){
     const counts={};
     DATA.forEach(d=>{
       const key=d.peca+"|||"+d.marca;
-      if(!counts[key]) counts[key]={peca:d.peca,marca:d.marca,total:0,gp:0,ouro:0,prata:0,bronze:0,titan:0};
+      if(!counts[key]) counts[key]={peca:d.peca,marca:d.marca,agencia:d.agencia,total:0,gp:0,ouro:0,prata:0,bronze:0,titan:0};
       counts[key].total++;
       if(d.premio==="Grand Prix") counts[key].gp++;
       else if(d.premio==="Ouro") counts[key].ouro++;
@@ -249,7 +249,7 @@ function render(){
       if(p.bronze) prizes.push(`${p.bronze}× Bronze`);
       return `<div class="top10-row" data-peca="${esc(p.peca)}" data-marca="${esc(p.marca)}">
         <span class="top10-pos">${i+1}</span>
-        <div class="top10-info"><span class="top10-piece">${esc(p.peca)}</span><span class="top10-brand">${esc(p.marca)}</span><span class="top10-prizes">${prizes.join(" · ")}</span></div>
+        <div class="top10-info"><span class="top10-headline">${esc(p.peca)} / ${esc(p.marca)} / ${esc(p.agencia)}</span><span class="top10-prizes">${prizes.join(" · ")}</span></div>
         <span class="top10-total">${p.total}</span></div>`;
     }).join("");
     elList.innerHTML=rows;
