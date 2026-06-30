@@ -191,6 +191,14 @@ function goHome(){
 }
 document.getElementById("homeLink").addEventListener("click",goHome);
 
+// Breadcrumb navigation (delegated)
+document.getElementById("crumb").addEventListener("click",e=>{
+  const link=e.target.closest(".crumb-link");if(!link)return;
+  const action=link.dataset.action;
+  if(action==="topView"){state.topPeca=null;state.topView=true;render();scrollToContent();}
+  if(action==="grupo"){state.categoria=null;render();scrollToContent();}
+});
+
 // Search
 let searchTimer;
 document.getElementById("search").addEventListener("input",e=>{
@@ -261,10 +269,8 @@ function render(){
   });
   list.sort((a,b)=>(PRIZE_ORDER[a.premio]-PRIZE_ORDER[b.premio])||a.peca.localeCompare(b.peca));
 
-  if(state.topPeca){elCrumb.innerHTML=`<a class="crumb-link" id="crumbTop">${esc(t("topAwarded"))}</a> / <b>${esc(state.topPeca.marca)}</b>`;elTitle.textContent=state.topPeca.peca;
-    document.getElementById("crumbTop").addEventListener("click",()=>{state.topPeca=null;state.topView=true;render();scrollToContent();});}
-  else if(state.categoria){elCrumb.innerHTML=`<a class="crumb-link" id="crumbGrp">${esc(state.grupo)}</a> / <b>${esc(state.categoria)}</b>`;elTitle.textContent=state.categoria;
-    document.getElementById("crumbGrp").addEventListener("click",()=>{state.categoria=null;render();scrollToContent();});}
+  if(state.topPeca){elCrumb.innerHTML=`<span class="crumb-link" data-action="topView">${esc(t("topAwarded"))}</span> / <b>${esc(state.topPeca.marca)}</b>`;elTitle.textContent=state.topPeca.peca;}
+  else if(state.categoria){elCrumb.innerHTML=`<span class="crumb-link" data-action="grupo">${esc(state.grupo)}</span> / <b>${esc(state.categoria)}</b>`;elTitle.textContent=state.categoria;}
   else if(state.grupo){elCrumb.innerHTML=`<b>${esc(state.grupo)}</b>`;elTitle.textContent=state.grupo;}
   else if(state.q){elCrumb.textContent=t("search");elTitle.textContent=`${t("searchFor")} "${state.q}"`;}
   else if(state.prize){elCrumb.innerHTML=`${esc(t("byTrophy"))} / <b>${esc(state.prize)}</b>`;elTitle.textContent=`${t("allOfPrize")} ${state.prize}`;}
