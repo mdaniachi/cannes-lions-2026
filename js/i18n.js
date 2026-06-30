@@ -46,7 +46,9 @@ const I18N = {
     closeBtn: "Fechar",
     darkMode: "Escuro",
     lightMode: "Claro",
-    skipLink: "Pular para o conteúdo"
+    skipLink: "Pular para o conteúdo",
+    bioP1: 'Eu sou o <b>Mauricio Daniachi</b>, fundador da <a href="https://flavor.studio" target="_blank" rel="noopener">FLAVOR</a> — um estúdio de creative production obcecado por craft, com base em Curitiba e representação em Brooklyn, NY.',
+    bioP2: "Montei esse projeto pra compilar todas as peças premiadas em Cannes Lions 2026 num lugar só. Achei que seria desperdício guardar isso pra mim, então abri pra todo mundo poder explorar, se inspirar e apreciar o melhor da criatividade mundial. Bom proveito."
   },
   en: {
     lang: "en",
@@ -95,7 +97,9 @@ const I18N = {
     closeBtn: "Close",
     darkMode: "Dark",
     lightMode: "Light",
-    skipLink: "Skip to content"
+    skipLink: "Skip to content",
+    bioP1: 'I\'m <b>Mauricio Daniachi</b>, founder of <a href="https://flavor.studio" target="_blank" rel="noopener">FLAVOR</a> — a creative production studio obsessed with craft, based in Curitiba with representation in Brooklyn, NY.',
+    bioP2: "I built this project to compile every awarded piece at Cannes Lions 2026 in one place. Figured it'd be a waste to keep it to myself, so I opened it up for everyone to explore, get inspired, and appreciate the best of global creativity. Enjoy."
   }
 };
 

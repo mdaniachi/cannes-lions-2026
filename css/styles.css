@@ -55,8 +55,7 @@ main{grid-column:2}
 /* ---------- Sidebar (editorial index) ---------- */
 aside{position:sticky;top:0;height:100vh;overflow-y:auto;
   border-right:1px solid var(--line);background:var(--paper);padding:32px 0;
-  mask-image:linear-gradient(to bottom,#000 calc(100% - 28px),transparent 100%);
-  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 28px),transparent 100%)}
+  display:flex;flex-direction:column}
 .brand{padding:0 28px 28px;border-bottom:1px solid var(--line);margin-bottom:8px}
 .brand .kick{font-size:10px;letter-spacing:.22em;text-transform:uppercase;
   color:var(--ink);font-weight:700;margin-bottom:10px}
@@ -100,6 +99,18 @@ aside{position:sticky;top:0;height:100vh;overflow-y:auto;
 .nav-cats a:hover{background:var(--mist);color:var(--ink)}
 .nav-cats a.active{color:var(--ink);font-weight:600}
 .nav-cats a .c{color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* ---------- Sidebar bio ---------- */
+.sidebar-bio{padding:24px 28px;border-top:1px solid var(--line);margin-top:auto;
+  font-size:11px;line-height:1.6;color:var(--muted)}
+.sidebar-bio p{margin-bottom:10px}
+.sidebar-bio b{color:var(--ink);font-weight:700}
+.sidebar-bio a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line)}
+.sidebar-bio a:hover{border-color:var(--ink)}
+.bio-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;font-size:10px;
+  text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.bio-links a{color:var(--muted);border-bottom:none}
+.bio-links a:hover{color:var(--ink)}
 
 /* ---------- Main ---------- */
 main{min-width:0}
