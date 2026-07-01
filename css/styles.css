@@ -122,10 +122,11 @@ aside{position:sticky;top:0;height:100vh;overflow-y:auto;
 .sidebar-bio p{margin-bottom:0}
 .sidebar-bio a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line)}
 .sidebar-bio a:hover{color:var(--ink);border-color:var(--ink)}
-.bio-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;font-size:9px;
+.bio-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;font-size:9px;
   text-transform:uppercase;letter-spacing:.12em;font-weight:600}
-.bio-links a{color:var(--ink);border-bottom:none}
-.bio-links a:hover{color:var(--ink)}
+.bio-links a{color:var(--ink);border:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  padding:5px 12px;transition:.12s;display:inline-block}
+.bio-links a:hover{background:var(--ink);color:var(--paper)}
 
 /* ---------- Main ---------- */
 main{min-width:0}
