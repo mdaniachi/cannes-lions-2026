@@ -184,8 +184,8 @@ main{min-width:0}
 .pz[data-p="Titanium Lion"]{background:var(--badge-titanium-bg);color:var(--badge-titanium-c)}
 .watch{justify-self:end;border:1px solid var(--ink);background:var(--paper);color:var(--ink);
   font-family:var(--mono);font-size:10px;font-weight:600;padding:8px 15px;border-radius:0;
-  cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:.12s;
-  text-transform:uppercase;letter-spacing:.1em;position:relative}
+  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;transition:.12s;
+  text-transform:uppercase;letter-spacing:.1em;position:relative;min-width:90px}
 .watch:hover{background:var(--ink);color:var(--paper)}
 .watch.ext-btn{border-color:var(--ink);color:var(--ink)}
 .watch.ext-btn:hover{background:var(--ink);color:var(--paper)}
