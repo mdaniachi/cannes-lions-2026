@@ -49,7 +49,7 @@ const I18N = {
     darkMode: "Escuro",
     lightMode: "Claro",
     skipLink: "Pular para o conteúdo",
-    bioText: 'Oi. :) Meu nome é Mauricio, sou fundador da <a href="https://flavor.studio" target="_blank" rel="noopener">Flavor</a> — um estúdio criativo obcecado por craft. Montei este projeto como uma ferramenta de pesquisa pessoal, reunindo todas as peças premiadas no Cannes Lions 2026, e resolvi abrir para quem também quer estudar, se inspirar e desfrutar do melhor da criatividade mundial. Enjoy.'
+    bioText: 'Oi. :) Meu nome é Mauricio, sou fundador da <a href="https://flavor.studio" target="_blank" rel="noopener">Flavor</a> — um estúdio criativo obcecado por craft. Montei este projeto como uma ferramenta de pesquisa pessoal, reunindo todas as peças premiadas no Cannes Lions 2026, e resolvi abrir para quem também quer estudar, se inspirar e desfrutar do melhor da criatividade mundial.'
   },
   en: {
     lang: "en",
@@ -101,7 +101,7 @@ const I18N = {
     darkMode: "Dark",
     lightMode: "Light",
     skipLink: "Skip to content",
-    bioText: 'Hi. :) My name is Mauricio, founder of <a href="https://flavor.studio" target="_blank" rel="noopener">Flavor</a> — a craft-obsessed studio. I built this project as a personal research tool, compiling every awarded piece at Cannes Lions 2026, and decided to open it up for anyone who wants to study, get inspired, and enjoy the best of global creativity. Enjoy.'
+    bioText: 'Hi. :) My name is Mauricio, founder of <a href="https://flavor.studio" target="_blank" rel="noopener">Flavor</a> — a craft-obsessed studio. I built this project as a personal research tool, compiling every awarded piece at Cannes Lions 2026, and decided to open it up for anyone who wants to study, get inspired, and enjoy the best of global creativity.'
   }
 };
 
