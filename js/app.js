@@ -390,7 +390,7 @@ function openWelcome(){
 }
 function closeWelcome(){
   welcomeModal.classList.remove("open");
-  localStorage.setItem("welcomeSeen","1");
+  sessionStorage.setItem("welcomeSeen","1");
 }
 document.getElementById("welcomeClose").addEventListener("click",closeWelcome);
 document.getElementById("welcomeCloseBottom").addEventListener("click",closeWelcome);
@@ -403,6 +403,6 @@ function buildUI(){
   rebuildNav();
   updateStaticTexts();
   render();
-  if(!localStorage.getItem("welcomeSeen")){openWelcome();}
+  if(!sessionStorage.getItem("welcomeSeen")){openWelcome();}
 }
 initLang();
