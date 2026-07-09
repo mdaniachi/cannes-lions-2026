@@ -76,7 +76,7 @@ function updateStaticTexts(){
   ps[4].textContent=t("privacyMeta");
   document.getElementById("welcomeTitle").textContent=t("welcomeTitle");
   document.getElementById("welcomeP1").innerHTML=t("welcomeP1");
-  document.getElementById("welcomeP2").textContent=t("welcomeP2");
+  document.getElementById("welcomeP2").innerHTML=t("welcomeP2");
   document.getElementById("welcomeSign").innerHTML=t("welcomeSign");
   document.getElementById("welcomeCloseBottom").textContent=t("welcomeBtn");
   document.getElementById("pcloseBottom").textContent=t("closeBtn");

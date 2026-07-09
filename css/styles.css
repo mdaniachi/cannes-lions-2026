@@ -258,11 +258,14 @@ main{min-width:0}
 
 /* ---------- Welcome modal ---------- */
 .welcome-sign{color:var(--ink);margin-top:4px}
-.welcome-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;font-size:9px;
-  text-transform:uppercase;letter-spacing:.12em;font-weight:600}
-.welcome-links a{color:var(--ink);border:1px solid var(--ink);
-  padding:5px 12px;transition:.12s;display:inline-block}
-.welcome-links a:hover{background:var(--ink);color:var(--paper)}
+.welcome-links{font-size:13px;color:var(--muted);margin-bottom:0}
+.welcome-links a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line)}
+.welcome-links a:hover{border-color:var(--ink)}
+.welcome-close-btn{display:block;width:100%;margin-top:22px;border:none;
+  background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;
+  font-weight:600;padding:12px 30px;cursor:pointer;text-transform:uppercase;
+  letter-spacing:.1em;transition:.12s}
+.welcome-close-btn:hover{opacity:.85}
 
 .mobtoggle{display:none}@media(max-width:900px){
   aside{position:fixed;left:0;top:0;z-index:50;width:280px;transform:translateX(-100%);
