@@ -67,13 +67,18 @@ function updateStaticTexts(){
   document.querySelector(".site-foot .disc").textContent=t("disclaimer");
   document.getElementById("privacyLink").textContent=t("privacyLink");
   document.querySelector(".site-foot .foot-links span:last-child").textContent=t("footLabel");
-  document.querySelector(".psheet h3").textContent=t("privacyTitle");
-  const ps=document.querySelectorAll(".psheet p");
+  document.querySelector("#pmodal .psheet h3").textContent=t("privacyTitle");
+  const ps=document.querySelectorAll("#pmodal .psheet p");
   ps[0].textContent=t("privacyP1");
   ps[1].innerHTML=t("privacyP2");
   ps[2].innerHTML=t("privacyP3");
   ps[3].innerHTML=t("privacyP4");
   ps[4].textContent=t("privacyMeta");
+  document.getElementById("welcomeTitle").textContent=t("welcomeTitle");
+  document.getElementById("welcomeP1").innerHTML=t("welcomeP1");
+  document.getElementById("welcomeP2").textContent=t("welcomeP2");
+  document.getElementById("welcomeSign").innerHTML=t("welcomeSign");
+  document.getElementById("welcomeCloseBottom").textContent=t("welcomeBtn");
   document.getElementById("pcloseBottom").textContent=t("closeBtn");
   const emptyEl=document.getElementById("empty");
   emptyEl.innerHTML="<b>"+esc(t("emptyTitle"))+"</b>"+esc(t("emptyDesc"))+'<button class="clear-btn" id="clearFilters">'+esc(t("clearFilters"))+"</button>";
@@ -377,11 +382,27 @@ document.getElementById("pcloseBottom").addEventListener("click",closePrivacy);
 pmodal.addEventListener("click",e=>{if(e.target===pmodal)closePrivacy();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&pmodal.classList.contains("open"))closePrivacy();});
 
+// --- Welcome modal (first visit only) ---
+const welcomeModal=document.getElementById("welcomeModal");
+function openWelcome(){
+  welcomeModal.classList.add("open");
+  document.getElementById("welcomeClose").focus();
+}
+function closeWelcome(){
+  welcomeModal.classList.remove("open");
+  localStorage.setItem("welcomeSeen","1");
+}
+document.getElementById("welcomeClose").addEventListener("click",closeWelcome);
+document.getElementById("welcomeCloseBottom").addEventListener("click",closeWelcome);
+welcomeModal.addEventListener("click",e=>{if(e.target===welcomeModal)closeWelcome();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&welcomeModal.classList.contains("open"))closeWelcome();});
+
 // --- Init ---
 function buildUI(){
   updateLangBtn();
   rebuildNav();
   updateStaticTexts();
   render();
+  if(!localStorage.getItem("welcomeSeen")){openWelcome();}
 }
 initLang();

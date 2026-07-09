@@ -49,7 +49,12 @@ const I18N = {
     darkMode: "Escuro",
     lightMode: "Claro",
     skipLink: "Pular para o conteúdo",
-    bioText: 'Oi. :) Meu nome é Mauricio, sou fundador da <a href="https://flavor.studio" target="_blank" rel="noopener">Flavor</a> — um estúdio criativo obcecado por craft. Montei este projeto como uma ferramenta de pesquisa pessoal, reunindo todas as peças premiadas no Cannes Lions 2026, e resolvi abrir para quem também quer estudar, se inspirar e desfrutar do melhor da criatividade mundial.'
+    bioText: 'Oi. :) Meu nome é Mauricio, sou fundador da <a href="https://flavor.studio" target="_blank" rel="noopener">Flavor</a> — um estúdio criativo obcecado por craft. Montei este projeto como uma ferramenta de pesquisa pessoal, reunindo todas as peças premiadas no Cannes Lions 2026, e resolvi abrir para quem também quer estudar, se inspirar e desfrutar do melhor da criatividade mundial.',
+    welcomeTitle: 'Bem-vindo! 👋',
+    welcomeP1: 'Esta é uma ferramenta independente de pesquisa que reúne todas as peças premiadas no Cannes Lions 2026. Como os links são de fontes públicas, alguns podem eventualmente sair do ar. Você pode <a href="mailto:mdaniachi@gmail.com">me enviar um e-mail aqui</a>.',
+    welcomeP2: 'Se encontrar um link quebrado ou tiver alguma sugestão, fique à vontade para entrar em contato — vou adorar ouvir você.',
+    welcomeSign: 'Obrigado pela visita!<br><strong>Mauricio Daniachi</strong>',
+    welcomeBtn: 'Entendi'
   },
   en: {
     lang: "en",
@@ -101,7 +106,12 @@ const I18N = {
     darkMode: "Dark",
     lightMode: "Light",
     skipLink: "Skip to content",
-    bioText: 'Hi. :) My name is Mauricio, founder of <a href="https://flavor.studio" target="_blank" rel="noopener">Flavor</a> — a craft-obsessed studio. I built this project as a personal research tool, compiling every awarded piece at Cannes Lions 2026, and decided to open it up for anyone who wants to study, get inspired, and enjoy the best of global creativity.'
+    bioText: 'Hi. :) My name is Mauricio, founder of <a href="https://flavor.studio" target="_blank" rel="noopener">Flavor</a> — a craft-obsessed studio. I built this project as a personal research tool, compiling every awarded piece at Cannes Lions 2026, and decided to open it up for anyone who wants to study, get inspired, and enjoy the best of global creativity.',
+    welcomeTitle: 'Welcome! 👋',
+    welcomeP1: 'This is an independent research tool compiling every awarded piece at Cannes Lions 2026. Since it pulls from public links, some may eventually go down. You can <a href="mailto:mdaniachi@gmail.com">e-mail me here</a>.',
+    welcomeP2: 'If you spot a broken link or have any suggestions, feel free to reach out — I\'d love to hear from you.',
+    welcomeSign: 'Thanks for visiting!<br><strong>Mauricio Daniachi</strong>',
+    welcomeBtn: 'Got it'
   }
 };
 
