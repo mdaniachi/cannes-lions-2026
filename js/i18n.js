@@ -67,7 +67,7 @@ const I18N = {
     statsOverview: 'Visão geral',
     statsCountries: 'Países mais premiados',
     statsAgencies: 'Agências mais premiadas',
-    statsCategoriesGP: 'Categorias com mais Grand Prix',
+    statsCategoriesGP: 'Categorias com mais troféus',
     awards: 'prêmios',
     suggestPieces: 'Peças',
     suggestFilters: 'Filtrar por'
@@ -140,7 +140,7 @@ const I18N = {
     statsOverview: 'Overview',
     statsCountries: 'Most awarded countries',
     statsAgencies: 'Most awarded agencies',
-    statsCategoriesGP: 'Categories with most Grand Prix',
+    statsCategoriesGP: 'Most awarded categories',
     awards: 'awards',
     suggestPieces: 'Pieces',
     suggestFilters: 'Filter by'
