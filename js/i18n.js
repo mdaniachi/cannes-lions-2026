@@ -54,7 +54,23 @@ const I18N = {
     welcomeP1: 'Esta é uma ferramenta independente de pesquisa que reúne todas as peças premiadas no Cannes Lions 2026. Como os links são de fontes públicas, alguns podem eventualmente sair do ar.',
     welcomeP2: 'Se encontrar algum problema ou tiver sugestões, fique à vontade para entrar em contato — adoraria ouvir você: <a href="mailto:mauricio@flavor.studio">mauricio@flavor.studio</a>',
     welcomeSign: 'Obrigado pela visita!<br><strong>Mauricio Daniachi</strong>',
-    welcomeBtn: 'Fechar'
+    welcomeBtn: 'Fechar',
+    favorites: 'Favoritos',
+    stats: 'Rankings',
+    random: 'Surpreenda-me',
+    share: 'Compartilhar',
+    save: 'Salvar',
+    saved: 'Salvo',
+    linkCopied: 'Link copiado!',
+    favEmptyTitle: 'Nenhum favorito ainda',
+    favEmptyDesc: 'Clique na estrela ☆ em qualquer peça para salvá-la aqui.',
+    statsOverview: 'Visão geral',
+    statsCountries: 'Países mais premiados',
+    statsAgencies: 'Agências mais premiadas',
+    statsCategoriesGP: 'Categorias com mais Grand Prix',
+    awards: 'prêmios',
+    suggestPieces: 'Peças',
+    suggestFilters: 'Filtrar por'
   },
   en: {
     lang: "en",
@@ -111,7 +127,23 @@ const I18N = {
     welcomeP1: 'This is an independent research tool compiling every awarded piece at Cannes Lions 2026. Since it pulls from public links, some may eventually go down.',
     welcomeP2: 'If you spot any issues or have suggestions, feel free to reach out — I\'d love to hear from you: <a href="mailto:mauricio@flavor.studio">mauricio@flavor.studio</a>',
     welcomeSign: 'Thanks for visiting!<br><strong>Mauricio Daniachi</strong>',
-    welcomeBtn: 'Close'
+    welcomeBtn: 'Close',
+    favorites: 'Favorites',
+    stats: 'Rankings',
+    random: 'Surprise me',
+    share: 'Share',
+    save: 'Save',
+    saved: 'Saved',
+    linkCopied: 'Link copied!',
+    favEmptyTitle: 'No favorites yet',
+    favEmptyDesc: 'Click the star ☆ on any piece to save it here.',
+    statsOverview: 'Overview',
+    statsCountries: 'Most awarded countries',
+    statsAgencies: 'Most awarded agencies',
+    statsCategoriesGP: 'Categories with most Grand Prix',
+    awards: 'awards',
+    suggestPieces: 'Pieces',
+    suggestFilters: 'Filter by'
   }
 };
 

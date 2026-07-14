@@ -29,6 +29,46 @@
 <!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
 
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://niceone.work/#website",
+      "url": "https://niceone.work/",
+      "name": "Cannes Lions 2026 Winners Archive",
+      "description": "A research tool featuring every Cannes Lions 2026 awarded piece, built to explore and study the best of global creativity.",
+      "inLanguage": ["pt-BR", "en"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://niceone.work/#/q/{search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://niceone.work/#collection",
+      "url": "https://niceone.work/",
+      "name": "Cannes Lions 2026 — Winners Archive",
+      "isPartOf": { "@id": "https://niceone.work/#website" },
+      "about": "Cannes Lions 2026 award-winning creative work",
+      "keywords": "Cannes Lions 2026, Grand Prix, advertising, creativity, winners, awards"
+    },
+    {
+      "@type": "Person",
+      "name": "Mauricio Daniachi",
+      "url": "https://flavor.studio",
+      "sameAs": [
+        "https://linkedin.com/in/mdaniachi",
+        "https://instagram.com/mdaniachi"
+      ]
+    }
+  ]
+}
+</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-REDP1471N1"></script>
 <script src="js/analytics.js"></script>
@@ -68,7 +108,8 @@
       </button>
       <div class="search">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-        <input id="search" type="search" placeholder="Buscar peça, marca, agência ou país…" autocomplete="off">
+        <input id="search" type="search" placeholder="Buscar peça, marca, agência ou país…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="acDrop">
+        <div class="ac-drop" id="acDrop" role="listbox"></div>
       </div>
       <div class="filters" id="filters" role="group" aria-label="Filtrar por prêmio">
         <button class="chip on" data-prize="" aria-pressed="true" data-i18n="filterAll">Todos</button>
@@ -78,6 +119,10 @@
         <button class="chip" data-prize="Bronze" aria-pressed="false">Bronze</button>
       </div>
       <div class="site-controls">
+        <button class="rand-btn" id="randomBtn" aria-label="Surprise me" title="Surprise me">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.4" fill="currentColor" stroke="none"/></svg>
+          <span class="rand-label"></span>
+        </button>
         <button class="lang-btn" id="langToggle" aria-label="Change language"><span class="flag">🇧🇷</span> PT</button>
         <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
           <svg id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
@@ -127,6 +172,8 @@
     <button class="welcome-close-btn" id="welcomeCloseBottom"></button>
   </div>
 </div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="js/i18n.js"></script>
 <script src="js/data.js"></script>
